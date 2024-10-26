@@ -1,0 +1,101 @@
+<body>
+    <div class="container-fluid p-0 d-flex h-100">
+        <div id="bdSidebar" 
+             class="d-flex flex-column 
+                    flex-shrink-0 
+                    p-3 bg-primary
+                    text-white offcanvas-md offcanvas-start">
+            <a href="#" 
+               class="navbar-brand">
+            </a>
+            <hr>
+            <div class="d-flex justify-content-center">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfJKDXaajqZF4OQ_rOcO5PN08ymXn92auMPeS-KIxrpF1Kp6Q6qVldt_AnGHW0q9ucztQ1ZtkbpQ6b5IlBQVvVP15oSMkSjMowijiko9AgpLk0BMXRH5IEz-GuRWcntiqU7ou2N7PZBI8/s1600/debi.jpg" alt="Foto do cidadão" class="img-fluid rounded-circle mb-0" style="width: 100px; height: 100px;"/>
+            </div>
+            <div class="d-flex justify-content-center mb-5">
+                {{"Nome do Cidadão" | uppercase}}
+            </div>
+
+            <ul class="mynav nav nav-pills flex-column mb-auto">
+                <li class="sidebar-item  nav-item mb-1">
+                    <div class="d-grid gap-2 col-12 mx-auto">
+                        <button  
+                        class="btn btn-primary" 
+                        data-bs-toggle="collapse"
+                        data-bs-target="#settings"
+                        aria-expanded="false"
+                        aria-controls="settings">
+                            <i class="fas fa-cog pe-2"></i>
+                            <span class="topic">Meu Perfil </span>
+                        </button>
+                    </div>
+                    <ul id="settings" 
+                        class="sidebar-dropdown list-unstyled collapse" 
+                        data-bs-parent="#sidebar">
+                        <div class="d-grid gap-2 col-12 history">
+                            <button class="btn btn-primary" type="button" (click)="modalHistory()">
+                                Histórico
+                            </button>
+                        </div>
+
+                    </ul>
+                </li>
+                <li *ngIf="admin" class="nav-item mb-1">
+                    <div class="d-grid gap-2 col-12 mx-auto">
+                        <button class="btn btn-primary" type="button" (click)="editPoints()">
+                            Editar Pontuação
+                        </button>
+                    </div>
+                    <div class="d-grid gap-2 col-12 mx-auto">
+                        <button class="btn btn-primary" type="button" (click)="editPointsAllUsers()">
+                            Edição em Massa
+                        </button>
+                    </div>
+                </li>
+            </ul>
+            <hr>
+            <div class="d-flex">
+                <i class="fa-solid fa-book  me-2"></i>
+                <span>
+                    <h6 class="mt-1 mb-0">
+                          Feito por Gabriel Alves
+                      </h6>
+                </span>
+            </div>
+        </div>
+        <div class="bg-light flex-fill">
+            <div class="p-2 d-md-none d-flex text-white bg-primary">>
+                <button href="#" class="bi bi-list" 
+                   data-bs-toggle="offcanvas"
+                   data-bs-target="#bdSidebar">
+                </button>
+                <span class="ms-3">Ranking Treinamento</span>
+            </div>
+            <div class="p-4">
+                <nav style="--bs-breadcrumb-divider:'>';font-size:14px; display: flex; align-items: center;">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <h3 style="align-items: center;">Campeonato Conhecimento Field Control</h3>
+                        </li>
+                        <li>
+                            <button class="btn btn-primary">
+                                <i class="bi bi-arrow-clockwise"></i>
+                                Atualizar
+                            </button>
+                        </li>
+                    </ol>
+                </nav>
+                <div class="border">
+                   <div class="card-container">
+                        <div *ngFor="let user of users" class="card">
+                            <div class="card-body">
+                                <span class="user-name">{{user.name}}</span>
+                                <span class="user-points">pontos: {{user.points}}</span>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

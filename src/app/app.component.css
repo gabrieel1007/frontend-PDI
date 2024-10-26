@@ -1,0 +1,21 @@
+.space {
+    flex: 1 1 auto;
+}
+
+.space-between {
+    display: flex;
+}
+
+.menu-item {
+    margin-left: 20px;
+}
+
+.menu-item:firt-child {
+    margin-left: 0;
+}
+
+.menu-item:last-child {
+    margin-right: 50px;
+}
+
+

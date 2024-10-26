@@ -1,0 +1,14 @@
+<div class="center">
+  <form [ngClass]="{'modal-error' : modalError}">
+    <h1 class="header-login">Login</h1>
+    <div class="form-group">
+      <label for="Name">Name:</label>
+      <input type="email" class="form-control" id="Name" placeholder="Digite seu nome:" name="name" [(ngModel)]="name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword">Password:</label>
+      <input type="password" class="form-control" id="exampleInputPassword" placeholder="Digite sua senha:" name="password" [(ngModel)]="password">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="!name || !password">Login</button>
+  </form>
+</div>

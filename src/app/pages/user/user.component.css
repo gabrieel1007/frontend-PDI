@@ -1,0 +1,116 @@
+html, body {
+    height: 100%;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.gfg {
+    height: 50px;
+    width: 50px;
+
+}
+
+.mynav {
+    color: #fff;
+}
+
+.mynav li a {
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+    padding: 8px 5px;
+}
+
+.mynav li a.active {
+    background: rgb(37, 150, 190);
+}
+
+.mynav li a:hover {
+    background: rgb(37, 150, 190);
+}
+
+.mynav li a i {
+    width: 25px;
+    text-align: center;
+}
+
+.notification-badge {
+    background-color: rgb(37, 150, 190);
+    float: right;
+    color:#222;
+    font-size: 14px;
+    padding: 0px 8px;
+    border-radius: 2px;
+}
+
+.card{
+    margin-top: 20px;
+    width: 90%;
+    perspective: 10000px;
+}
+
+.card-body {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.card-body:hover {
+    transform: rotateY(10deg) rotateX(10deg);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.bg-light {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.card {
+    margin-bottom: 10px;
+}
+
+.card-container {
+    height: calc(100vh - 150px);
+    overflow-y: hidden;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20 px;
+}
+
+.card-container::-webkit-scrollbar {
+    display: none;
+}
+
+.card-container {
+    scrollbar-width: none
+}
+
+.card-container {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.border {
+    border-radius: 10px;
+    border: 1px solid #6e6e6e;
+    width: 100%;
+    height: 100%;;
+} 
+
+.history {
+    justify-content: flex-start;
+}
+
+.img-fluid {
+    align-items: center;
+}
