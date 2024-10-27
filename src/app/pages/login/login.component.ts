@@ -40,7 +40,7 @@ export class LoginComponent {
     this.loginService.authenticateUser(name, password).subscribe(
       (data) => {
         console.log(data);
-        if(!data.valid){
+        if(!data.token){
           this.userValid = false;
           this.modalError = true;
           return;
