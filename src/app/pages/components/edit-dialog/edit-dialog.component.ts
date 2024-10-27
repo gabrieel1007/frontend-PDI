@@ -1,7 +1,7 @@
 import { Component, Inject, NgModule } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
-import { ApiService } from '../../../api/api.service';
+import { ApiService } from '../../../services/api/api.service';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -44,7 +44,7 @@ export class EditDialogComponent {
   }
 
   loadUsers() {
-    this.apiService.getAllUser().subscribe((users) => {
+    this.apiService.getAllUsersAndPoints().subscribe((users) => {
       this.users = users;
       console.log(this.users);
     });

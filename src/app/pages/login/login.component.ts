@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatDivider } from '@angular/material/divider';
 import { CommonModule } from '@angular/common';
@@ -24,32 +24,37 @@ export class LoginComponent {
   constructor(
     private loginService: LoginService, 
     private router: Router,
+    private edr: ChangeDetectorRef
   ) {}
 
   public name: string = '';
   public password: string = '';
-  public admin: boolean = false;
-  public userValid: boolean = false;
   public modalError: boolean = false;
 
+
+  ngOnInit() {
+    const userAuth = this.loginService.getCredentialsLocalStorage();
+    console.log(userAuth);
+    if(userAuth.token){
+      this.router.navigate(['/home']);
+    }
+  }
+
   async onSubmit() {
-    const UserAprove = await this.consultCredentials(this.name, this.password);
+    await this.consultCredentials(this.name, this.password);
   }
 
   async consultCredentials(name: string, password: string) {
+    console.log(name, password);
     this.loginService.authenticateUser(name, password).subscribe(
       (data) => {
         console.log(data);
+
         if(!data.token){
-          this.userValid = false;
           this.modalError = true;
           return;
         } else {
-          this.userValid = true;
-          this.modalError = false;
-          this.admin = data.admin;
-          this.loginService.setAuthenticated(true);
-          this.directionScreen(data);
+          this.setCredentialsLocalStorage(data);
         }
       }, (error) => {
         console.log(error);
@@ -57,7 +62,13 @@ export class LoginComponent {
     );
   }
 
-  directionScreen(data: any) {
-    this.router.navigate(['/home'], {state: {id: data.id, admin: data.admin}});
+  directionScreen() {
+    this.router.navigate(['/home']);
+  }
+
+  async setCredentialsLocalStorage(data: any) {
+    if(!data.token) { return; }
+    await this.loginService.setCredentialsLocalStorage(data);
+    this.directionScreen();
   }
 }

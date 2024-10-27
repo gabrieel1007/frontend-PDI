@@ -1,6 +1,6 @@
 import { Component, Injectable } from '@angular/core';
-import { ApiService } from '../../api/api.service';
-
+import { ApiService } from '../../services/api/api.service';
+import { LocalStorageService } from '../../services/local-storage/local-storage.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,12 +8,13 @@ import { ApiService } from '../../api/api.service';
 export class LoginService {
   private isLogged = false;
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    private localStorage: LocalStorageService
+  ) { }
 
   authenticateUser(name: string, password: string) {
-    const result = this.apiService.authenticateUser(name, password);
-    console.log(result);
-    return result;
+    return this.apiService.authenticateUser(name, password);
   }
 
   isAuthenticated() {
@@ -22,5 +23,13 @@ export class LoginService {
 
   setAuthenticated(value: boolean) {
     this.isLogged = value;
+  }
+
+  setCredentialsLocalStorage(data: any) {
+    this.localStorage.setCredentialsLocalStorage(data);
+  }
+
+  getCredentialsLocalStorage() {
+    return this.localStorage.getCredentialsLocalStorage();
   }
 }

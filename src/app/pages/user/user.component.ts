@@ -26,30 +26,34 @@ import { PointsHistoryDialogComponent } from '../components/points-history-dialo
 })
 export class UserComponent {
   public users: any[] = [];
-  public permission: any[] = [];
   public admin: boolean = false;
-  public idUser: any;
 
   constructor(
     private userService: UserService,
-    private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
-    const getIdUser = this.router.getCurrentNavigation()?.extras.state;
-    this.idUser = getIdUser;
-    this.admin = this.idUser.admin;
+    console.log(this.userService.getCredentialsLocalStorage());
+    this.admin = this.userService.getIfuserIsAdmin();
   }
 
-  ngOnInit() {
-    console.log(this.idUser);
-    console.log(this.idUser.admin)
-    this.consultUser();
-    // this.getByUserAutenhticated();
+  ngOnInit() { 
+    const userAuth = this.userService.getCredentialsLocalStorage();
+    if(!userAuth.token){
+      this.router.navigate(['/login']);
+      return;
+    }
+    this.consultUsersAndPoints();
+  }
+
+  async logout() {
+    await this.userService.logoutUser();
+    this.router.navigate(['/login']);
   }
   
-
-  consultUser() {
-    this.userService.getAllUsers().subscribe(
+  consultUsersAndPoints() {
+    console.log('consultUsersAndPoints');
+    this.userService.getusersAndPoints().subscribe(
       (data) => {
         this.users = data;
         console.log(this.users)
