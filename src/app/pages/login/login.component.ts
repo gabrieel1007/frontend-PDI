@@ -45,7 +45,6 @@ export class LoginComponent {
   }
 
   async consultCredentials(name: string, password: string) {
-    console.log(name, password);
     this.loginService.authenticateUser(name, password).subscribe(
       (data) => {
         console.log(data);

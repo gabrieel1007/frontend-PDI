@@ -2,7 +2,7 @@
 <mat-dialog-content>
     <mat-form-field>
         <mat-label>Selecione a Pessoa</mat-label>
-        <mat-select [(ngModel)]="userSelected" (selectionChange)="getUserSelected($event.value)">
+        <mat-select [(ngModel)]="userSelected" (selectionChange)="getUserSelected($event.value)" [multiple]="true">
             <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
         </mat-select>
     </mat-form-field>

@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { UserService } from './user.service';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
-import { MatList, MatListModule } from '@angular/material/list';
+import { MatList, MatListModule, MatSelectionList } from '@angular/material/list';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from '../components/edit-dialog/edit-dialog.component';
 import { EditGlobalDialogComponent } from '../components/edit-global-dialog/edit-global-dialog.component';
 import { PointsHistoryDialogComponent } from '../components/points-history-dialog/points-history-dialog.component';
+import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -19,7 +20,9 @@ import { PointsHistoryDialogComponent } from '../components/points-history-dialo
     MatToolbar,
     MatList,
     MatListModule,
-    CommonModule
+    CommonModule,
+    MatSelectionList,
+    FormsModule
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
@@ -27,18 +30,21 @@ import { PointsHistoryDialogComponent } from '../components/points-history-dialo
 export class UserComponent {
   public users: any[] = [];
   public admin: boolean = false;
+  public selectedUsers: any[] = [];
+  public nameUser: string | null = null;
+
 
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
     private router: Router
   ) {
-    console.log(this.userService.getCredentialsLocalStorage());
     this.admin = this.userService.getIfuserIsAdmin();
   }
 
   ngOnInit() { 
     const userAuth = this.userService.getCredentialsLocalStorage();
+    this.nameUser = userAuth.name;
     if(!userAuth.token){
       this.router.navigate(['/login']);
       return;
@@ -50,9 +56,12 @@ export class UserComponent {
     await this.userService.logoutUser();
     this.router.navigate(['/login']);
   }
+
+  refresh() {
+    this.consultUsersAndPoints();
+  }
   
   consultUsersAndPoints() {
-    console.log('consultUsersAndPoints');
     this.userService.getusersAndPoints().subscribe(
       (data) => {
         this.users = data;

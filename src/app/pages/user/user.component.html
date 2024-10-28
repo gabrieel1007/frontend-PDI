@@ -13,7 +13,7 @@
                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfJKDXaajqZF4OQ_rOcO5PN08ymXn92auMPeS-KIxrpF1Kp6Q6qVldt_AnGHW0q9ucztQ1ZtkbpQ6b5IlBQVvVP15oSMkSjMowijiko9AgpLk0BMXRH5IEz-GuRWcntiqU7ou2N7PZBI8/s1600/debi.jpg" alt="Foto do cidadão" class="img-fluid rounded-circle mb-0" style="width: 100px; height: 100px;"/>
             </div>
             <div class="d-flex justify-content-center mb-5">
-                {{"Nome do Cidadão" | uppercase}}
+                {{nameUser | uppercase}}
             </div>
 
             <ul class="mynav nav nav-pills flex-column mb-auto">
@@ -37,7 +37,11 @@
                                 Histórico
                             </button>
                         </div>
-
+                        <div class="d-grip gap-2 col-12 history">
+                            <button class="btn btn-primary" type="button">
+                                Trocar Pontos
+                            </button>
+                        </div>
                     </ul>
                 </li>
                 <li *ngIf="admin" class="nav-item mb-1">
@@ -48,7 +52,12 @@
                     </div>
                     <div class="d-grid gap-2 col-12 mx-auto">
                         <button class="btn btn-primary" type="button" (click)="editPointsAllUsers()">
-                            Edição em Massa
+                            Resetar Pontuação
+                        </button>
+                    </div>
+                    <div class="d-grid gap-2 col-12 mx-auto">
+                        <button class="btn btn-primary" type="button" >
+                            Editar Lojinha
                         </button>
                     </div>
                 </li>
@@ -83,7 +92,7 @@
                             <h3 style="align-items: center;">Campeonato Conhecimento Field Control</h3>
                         </li>
                         <li>
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" (click)="refresh()">
                                 <i class="bi bi-arrow-clockwise"></i>
                                 Atualizar
                             </button>
@@ -95,10 +104,17 @@
                         <div *ngFor="let user of users" class="card">
                             <div class="card-body">
                                 <span class="user-name">{{user.name}}</span>
-                                <span class="user-points">pontos: {{user.points}}</span>
+                                <span class="user-points">pontos: {{user.total_points}}</span>
                             </div>
                         </div>
-                    </div> 
+                   </div>
+                        <!-- <mat-selection-list [(ngModel)]="selectedUsers" [multiple]="true">
+                            <mat-list-option *ngFor="let user of users" [value]="user">
+                              <span class="user-name">{{ user.name }}</span>
+                              <span class="user-points">pontos: {{ user.total_points }}</span>
+                            </mat-list-option>
+                        </mat-selection-list>                          
+                    </div>  -->
                 </div>
             </div>
         </div>

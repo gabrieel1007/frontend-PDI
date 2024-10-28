@@ -35,4 +35,8 @@ export class LocalStorageService {
     logoutUser(){
         localStorage.clear();
     }
+
+    getIdUser(){
+        return localStorage.getItem('id');
+    }
 }

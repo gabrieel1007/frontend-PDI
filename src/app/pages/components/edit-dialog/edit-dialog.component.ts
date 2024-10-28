@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
+import { MatList, MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -21,7 +22,10 @@ import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
     MatFormFieldModule,
     MatInputModule,
     MatRadioButton,
-    MatRadioGroup
+    MatRadioGroup,
+    FormsModule,
+    MatList,
+    MatListModule
     ],
   templateUrl: './edit-dialog.component.html',
   styleUrl: './edit-dialog.component.css'
@@ -33,7 +37,6 @@ export class EditDialogComponent {
   public addPoints: boolean = false;
   public quantityPoints: number = 0;
   public pointsAfter: number = 0;
-
 
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
