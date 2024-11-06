@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EditGlobalDialogService } from './edit-global-dialog.service';
 
 
 @Component({
@@ -38,20 +39,11 @@ export class EditGlobalDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<EditGlobalDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private readonly editGlobalDialogService: EditGlobalDialogService
   ){}
 
-  editUser(){
-    console.log(this.userSelected);
-    console.log(this.pointsAfter);
-    console.log(this.addPoints);
-    console.log(this.quantityPoints)
-  }
-
-  calculatePoints() {
-    if(this.addPoints){
-      this.pointsAfter = this.pointsActual + this.quantityPoints;
-    } else {
-      this.pointsAfter = this.pointsActual - this.quantityPoints;
-    }
+  resetAllPoints(){
+    console.log(this.editGlobalDialogService.resetAllPoints());
+    return this.editGlobalDialogService.resetAllPoints();
   }
 }

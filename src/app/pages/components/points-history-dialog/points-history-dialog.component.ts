@@ -41,9 +41,7 @@ export class PointsHistoryDialogComponent {
     return this.pointsHistoryDialogService.getUserPointsHistory(this.userId).subscribe(
       response => {
         this.pointsHistory = response;
-        console.log(this.pointsHistory);
       }
     );
   }
-
 }

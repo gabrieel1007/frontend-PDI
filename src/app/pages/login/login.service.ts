@@ -30,6 +30,6 @@ export class LoginService {
   }
 
   getCredentialsLocalStorage() {
-    return this.localStorage.getCredentialsLocalStorage();
+    return this.localStorage.getAllCredentialsLocalStorage();
   }
 }

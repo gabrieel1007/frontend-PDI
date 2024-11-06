@@ -7,11 +7,6 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field style="margin-top: 10px;">
-        <mat-label>Pontuação atual</mat-label>
-        <input matInput [(ngModel)]="pointsActual" placeholder="Nome" disabled>
-    </mat-form-field>
-
     <mat-radio-group [(ngModel)]="addPoints">
         <mat-radio-button [value]="true">Adicionar pontos</mat-radio-button>
         <mat-radio-button [value]="false">Remover pontos</mat-radio-button>
@@ -19,13 +14,9 @@
 
     <mat-form-field style="margin-top: 10px;">
         <mat-label>Pontos inseridos/removidos</mat-label>
-        <input matInput [(ngModel)]="quantityPoints" type="text" [disabled]="!userSelected" (ngModelChange)="calculatePoints()">
+        <input matInput [(ngModel)]="quantityPoints" type="text" [disabled]="!userSelected">
     </mat-form-field>
 
-    <mat-form-field style="margin-top: 10px;">
-        <mat-label>Pontuação após edição</mat-label>
-        <input matInput [(ngModel)]="pointsAfter" type="text" disabled>
-    </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button mat-dialog-close color="warn">Cancelar</button>

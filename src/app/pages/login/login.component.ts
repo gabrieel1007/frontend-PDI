@@ -34,10 +34,6 @@ export class LoginComponent {
 
   ngOnInit() {
     const userAuth = this.loginService.getCredentialsLocalStorage();
-    console.log(userAuth);
-    if(userAuth.token){
-      this.router.navigate(['/home']);
-    }
   }
 
   async onSubmit() {
@@ -47,8 +43,6 @@ export class LoginComponent {
   async consultCredentials(name: string, password: string) {
     this.loginService.authenticateUser(name, password).subscribe(
       (data) => {
-        console.log(data);
-
         if(!data.token){
           this.modalError = true;
           return;

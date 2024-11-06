@@ -49,31 +49,16 @@ export class EditDialogComponent {
   loadUsers() {
     this.apiService.getAllUsersAndPoints().subscribe((users) => {
       this.users = users;
-      console.log(this.users);
     });
   }
 
   editUser(){
     console.log(this.userSelected);
-    console.log(this.pointsAfter);
     console.log(this.addPoints);
     console.log(this.quantityPoints)
   }
 
   getUserSelected(event: any){
-    console.log(event);
     this.pointsActual = event.points;
-    this.calculatePoints();
-  }
-
-  calculatePoints() {
-    console.log(this.addPoints);
-    console.log(this.quantityPoints);
-    console.log(this.pointsActual);
-    if(this.addPoints){
-      this.pointsAfter = this.pointsActual + this.quantityPoints;
-    } else {
-      this.pointsAfter = this.pointsActual - this.quantityPoints;
-    }
   }
 }

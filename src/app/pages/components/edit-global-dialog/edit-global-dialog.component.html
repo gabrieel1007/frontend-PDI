@@ -1,17 +1,10 @@
-<h2 style="text-align: center;"mat-dialog-title>Edição de pontos em Massa</h2>
+<h2 style="text-align: center;"mat-dialog-title>Resetar pontuação geral</h2>
 <mat-dialog-content>
-    <mat-radio-group [(ngModel)]="addPoints">
-        <mat-radio-button [value]="true">Adicionar pontos</mat-radio-button>
-        <mat-radio-button [value]="false">Remover pontos</mat-radio-button>
-    </mat-radio-group>
-
-    <mat-form-field style="margin-top: 10px;">
-        <mat-label>Pontos inseridos/removidos</mat-label>
-        <input matInput [(ngModel)]="quantityPoints" type="text" (ngModelChange)="calculatePoints()">
-    </mat-form-field>
-
+    <p>Tem certeza que deseja resetar a pontuação de todos os usuários?</p>
+    <p>A pontuação de todos os usuários, incluindo os Administradores será resetada.</p>
+    <p>Essa ação não pode ser desfeita.</p>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button mat-dialog-close color="warn">Cancelar</button>
-    <button mat-button color="primary" (click)="editUser()">Confirmar</button>
+    <button mat-button color="primary" (click)="resetAllPoints()">Confirmar</button>
 </mat-dialog-actions>

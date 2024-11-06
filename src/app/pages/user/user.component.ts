@@ -10,6 +10,7 @@ import { EditDialogComponent } from '../components/edit-dialog/edit-dialog.compo
 import { EditGlobalDialogComponent } from '../components/edit-global-dialog/edit-global-dialog.component';
 import { PointsHistoryDialogComponent } from '../components/points-history-dialog/points-history-dialog.component';
 import { FormsModule, NgModel } from '@angular/forms';
+import { find } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -31,7 +32,7 @@ export class UserComponent {
   public users: any[] = [];
   public admin: boolean = false;
   public selectedUsers: any[] = [];
-  public nameUser: string | null = null;
+  public nameUser: string | undefined | null = null;
 
 
   constructor(
@@ -44,11 +45,7 @@ export class UserComponent {
 
   ngOnInit() { 
     const userAuth = this.userService.getCredentialsLocalStorage();
-    this.nameUser = userAuth.name;
-    if(!userAuth.token){
-      this.router.navigate(['/login']);
-      return;
-    }
+    this.nameUser = userAuth?.username;
     this.consultUsersAndPoints();
   }
 
@@ -60,12 +57,23 @@ export class UserComponent {
   refresh() {
     this.consultUsersAndPoints();
   }
+
+  searchByName(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if(!input.value) { this.consultUsersAndPoints(); return;}
+    this.users = this.findByUserName(this.users, input.value);
+  }
+
+  findByUserName(users: any[], username: string): any[] {
+    return users
+      .filter(user => user.name.toLowerCase().includes(username.toLowerCase()))
+      .sort((a,  b) => a.name.localeCompare(b.name));
+  }
   
   consultUsersAndPoints() {
     this.userService.getusersAndPoints().subscribe(
       (data) => {
         this.users = data;
-        console.log(this.users)
       }, (error) => {
         console.log(error);
       }

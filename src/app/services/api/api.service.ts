@@ -60,7 +60,12 @@ export class ApiService {
     return pointsHistory;
 
   }
+
   getUserById(id: any): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
+  resetAllPoints(): any {
+    return 'resetar todos pontos';
   }
 }
