@@ -3,9 +3,11 @@
   <p>O campeonato de conhecimento da Field é uma forma totalmente distraida e intuitiva de deixar os fielders por dentros dass funcionalides do Fields, aqui eles podem acompanhar sua pontuação obtidas nos treinamentos.</p>
 </div>
 
-> **Funções a serem feitas**
+> **Funções feitas**
 > - [x] tela principal - busca por nome de usuario
 > - [x] modal - zerar pontuação
+
+> **Funções a serem feitas**
 > - [ ] modal - editar pontuação
 > - [ ] modal - registro usuário
 > - [ ] lista - ajustes em layout
