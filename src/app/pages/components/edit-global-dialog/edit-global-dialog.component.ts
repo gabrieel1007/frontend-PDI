@@ -22,8 +22,6 @@ import { EditGlobalDialogService } from './edit-global-dialog.service';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRadioButton,
-    MatRadioGroup
   ],
   templateUrl: './edit-global-dialog.component.html',
   styleUrl: './edit-global-dialog.component.css'
@@ -43,7 +41,16 @@ export class EditGlobalDialogComponent {
   ){}
 
   resetAllPoints(){
-    console.log(this.editGlobalDialogService.resetAllPoints());
-    return this.editGlobalDialogService.resetAllPoints();
+    const retorno =  this.editGlobalDialogService.resetAllPoints();
+
+    retorno.subscribe((response: any) => {
+      if(response.affected >= 0) {
+        this.closeModal();
+      }
+    })
+  }
+
+  private closeModal(){
+    this.dialogRef.close();
   }
 }

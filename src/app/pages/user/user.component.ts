@@ -16,13 +16,9 @@ import { find } from 'rxjs';
   selector: 'app-user',
   standalone: true,
   imports: [ 
-    MatSidenav,
     MatSidenavModule,
-    MatToolbar,
-    MatList,
     MatListModule,
     CommonModule,
-    MatSelectionList,
     FormsModule
   ],
   templateUrl: './user.component.html',
@@ -88,7 +84,7 @@ export class UserComponent {
     });
   }
 
-  editPointsAllUsers(): void{
+  resetAllPoints(): void{
     const dialogRef = this.dialog.open(EditGlobalDialogComponent, {
       height: '500px',
       width: '700px',

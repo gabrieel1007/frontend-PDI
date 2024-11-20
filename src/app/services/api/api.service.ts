@@ -61,11 +61,16 @@ export class ApiService {
 
   }
 
-  getUserById(id: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${id}`);
-  }
+  resetAllPoints(): Observable<any> {
+    const url = `${this.baseUrl}/points/reset`;
 
-  resetAllPoints(): any {
-    return 'resetar todos pontos';
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    })
+
+    const body = { token: this.userToken }
+
+    const resetPoints = this.http.post(url, body , { headers});
+    return resetPoints;
   }
 }
