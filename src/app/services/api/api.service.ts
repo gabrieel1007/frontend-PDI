@@ -73,4 +73,21 @@ export class ApiService {
     const resetPoints = this.http.post(url, body , { headers});
     return resetPoints;
   }
+
+  editUsers(params: any): any {
+    const url = `${this.baseUrl}/points/edit`;
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    })
+
+    const body = {
+      usersSelected: params.userSelected,
+      points: params.points,
+      addPoints: params.typeOperation
+    }
+
+    const editPoints = this.http.post(url, body, { headers });
+    return editPoints;
+  }
 }

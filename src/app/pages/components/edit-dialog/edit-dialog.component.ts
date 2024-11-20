@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { MatList, MatListModule } from '@angular/material/list';
+import { EditDialogService } from './edit-dialog.service';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -24,7 +25,6 @@ import { MatList, MatListModule } from '@angular/material/list';
     MatRadioButton,
     MatRadioGroup,
     FormsModule,
-    MatList,
     MatListModule
     ],
   templateUrl: './edit-dialog.component.html',
@@ -33,32 +33,33 @@ import { MatList, MatListModule } from '@angular/material/list';
 export class EditDialogComponent {
   public users: any;
   public userSelected: any;
-  public pointsActual: number = 0;
   public addPoints: boolean = false;
   public quantityPoints: number = 0;
-  public pointsAfter: number = 0;
 
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private readonly editDialogService: EditDialogService
   ) {
     this.loadUsers();
   }
 
   loadUsers() {
-    this.apiService.getAllUsersAndPoints().subscribe((users) => {
-      this.users = users;
+    this.editDialogService.loadUsers().subscribe((response) => {
+      this.users = response;
     });
   }
 
-  editUser(){
-    console.log(this.userSelected);
-    console.log(this.addPoints);
-    console.log(this.quantityPoints)
-  }
-
-  getUserSelected(event: any){
-    this.pointsActual = event.points;
+  editUsers(){
+    const params = {
+      userSelected: this.userSelected,
+      points: this.quantityPoints,
+      typeOperation: this.addPoints
+    }
+    console.log(params);
+    return this.apiService.editUsers(params).subscribe((response: any) => {
+      console.log(response);
+    });
   }
 }
