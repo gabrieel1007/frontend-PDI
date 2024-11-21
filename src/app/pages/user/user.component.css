@@ -78,8 +78,8 @@ html, body {
 }
 
 .card-container {
-    overflow-y: hidden;
-    padding: 10px;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
